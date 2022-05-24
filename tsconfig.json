@@ -1,0 +1,23 @@
+{
+	"compilerOptions": {
+		"target": "es2016",
+		"module": "commonjs",
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"strict": true,
+		"skipLibCheck": true,
+		"moduleResolution": "node",
+		"baseUrl": "./",
+		"paths": {
+			"@root": [""],
+			"@model/*": ["model/*"],
+			"@interfaces": ["src/model/interfaces"],
+			"@repositories/*": ["src/model/repositories/*"],
+			"@domain/*": ["src/model/core/domain/*"],
+			"@infrastructure/*": ["src/model/core/infrastructure/*"],
+			"@logic/*": ["src/model/core/logic/*"]
+		},
+		"plugins": [{ "transform": "typescript-transform-paths" }]
+	},
+	"exclude": ["node_modules"]
+}
