@@ -10,7 +10,7 @@
 		"baseUrl": "./",
 		"paths": {
 			"@root": [""],
-			"@model/*": ["model/*"],
+			"@model/*": ["src/model/*"],
 			"@interfaces": ["src/model/interfaces"],
 			"@repositories/*": ["src/model/repositories/*"],
 			"@domain/*": ["src/model/core/domain/*"],

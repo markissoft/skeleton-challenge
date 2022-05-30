@@ -1,19 +1,22 @@
-import { AggregateRoot } from "@domain/AggregateRoot";
-import { UniqueEntityID } from "@domain/UniqueEntityID";
-import { Result } from "@logic/Result";
+import { AggregateRoot } from "../model/core/domain/AggregateRoot";
+import { UniqueEntityID } from "../model/core/domain/UniqueEntityID";
+import { Result } from "../model/core/logic/Result";
 import { UserId } from "./userId";
 import { Email } from "./email";
-import { Guard } from "@logic/Guard";
+import { Guard } from "../model/core/logic/Guard";
 import { Password } from "./password";
-import { IUser, IEmail, IPassword } from "@interfaces";
+import { IEmail, IPassword } from "../model/interfaces";
+
+export interface IUser {
+	firstName: string;
+	lastName: string;
+	email: Email;
+	password: string;
+}
 
 export class User extends AggregateRoot<IUser> {
 	get id(): UniqueEntityID {
 		return this._id;
-	}
-
-	get userId(): UserId {
-		return UserId.caller(this.id);
 	}
 
 	get firstName(): string {
@@ -24,11 +27,11 @@ export class User extends AggregateRoot<IUser> {
 		return this.props.lastName;
 	}
 
-	get email(): IEmail {
+	get email(): Email {
 		return this.props.email;
 	}
 
-	get password(): IPassword {
+	get password(): string {
 		return this.props.password;
 	}
 

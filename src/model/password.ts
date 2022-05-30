@@ -1,7 +1,7 @@
-import { ValueObject } from "@domain/ValueObject";
-import { Result } from "@logic/Result";
-import { Guard } from "@logic/Guard";
-import { IPassword } from "@interfaces";
+import { ValueObject } from "../model/core/domain/ValueObject";
+import { Result } from "../model/core/logic/Result";
+import { Guard } from "../model/core/logic/Guard";
+import { IPassword } from "../model/interfaces";
 import * as bcrypt from "bcrypt-nodejs";
 
 export class Password extends ValueObject<IPassword> {
@@ -41,12 +41,13 @@ export class Password extends ValueObject<IPassword> {
 		return !!this.props.hashed;
 	}
 
-	private hashPassword(password: string): Promise<string> {
+	public hashPassword(password: string): Promise<string> {
 		return new Promise((resolve, reject) => {
-			//TODO: change to bcrypt.genSaltSync
-			bcrypt.hash(password, "null", null, (err, hash) => {
-				if (err) return reject(err);
-				resolve(hash);
+			bcrypt.genSalt(8, (err, salt) => {
+				bcrypt.hash(password, salt, null, (err, hash) => {
+					if (err) return reject(err);
+					resolve(hash);
+				});
 			});
 		});
 	}
@@ -61,7 +62,7 @@ export class Password extends ValueObject<IPassword> {
 		});
 	}
 
-	public static isAppropriateLength(value: string): boolean {
+	private static isAppropriateLength(value: string): boolean {
 		return value.length >= 8;
 	}
 

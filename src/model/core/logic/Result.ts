@@ -18,8 +18,8 @@ export class Result<T> {
 
 		this.isSuccess = isSuccess;
 		this.isFailure = !isSuccess;
-		this.error = error;
-		this._value = value;
+		error ? (this.error = error) : (this.error = "");
+		value ? (this._value = value) : (this._value = {} as T);
 
 		Object.freeze(this);
 	}

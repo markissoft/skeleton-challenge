@@ -6,11 +6,5 @@ export interface IRepo<T> {
 }
 
 export abstract class Repo<T> {
-	public async upsert(exists: boolean, model: any, t: T): Promise<void> {
-		if (!exists) {
-			await model.create(t);
-		} else {
-			await model.update(t);
-		}
-	}
+	public async upsert(exists: boolean, model: any): Promise<void> {}
 }

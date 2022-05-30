@@ -1,9 +1,10 @@
 import express from "express";
+import { userRouter } from "./model/api/user";
 
 const app = express();
 
-app.get("/", (req, res) => {
-	res.send("Hello World!");
-});
+app.use("/api/v1/user", userRouter);
 
-app.listen(5000, () => console.log("Server started on port 5000"));
+app.listen(5000, () =>
+	console.log(" [+] Server started on port 5000", app.listeners)
+);

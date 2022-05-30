@@ -1,5 +1,5 @@
-import { Entity } from "@domain/Entity";
-import { UniqueEntityID } from "@domain/UniqueEntityID";
+import { Entity } from "../model/core/domain/Entity";
+import { UniqueEntityID } from "./core/domain/UniqueEntityID";
 
 export class UserId extends Entity<any> {
 	get id(): UniqueEntityID {

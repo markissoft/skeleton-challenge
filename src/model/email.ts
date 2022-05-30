@@ -1,7 +1,7 @@
-import { ValueObject } from "@domain/ValueObject";
-import { Result } from "@logic/Result";
-import { Guard } from "@logic/Guard";
-import { IEmail } from "@interfaces";
+import { ValueObject } from "../model/core/domain/ValueObject";
+import { Result } from "../model/core/logic/Result";
+import { Guard } from "../model/core/logic/Guard";
+import { IEmail } from "../model/interfaces";
 
 export class Email extends ValueObject<IEmail> {
 	get value(): string {
@@ -12,7 +12,7 @@ export class Email extends ValueObject<IEmail> {
 		super(props);
 	}
 
-	public static create(email: string): Result<IEmail> {
+	public static create(email: string): Result<Email> {
 		const guardResult = Guard.againstNullOrUndefined(email, "email");
 		if (!guardResult.succeeded) {
 			return Result.fail<Email>(guardResult.message);
